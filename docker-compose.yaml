@@ -1,0 +1,23 @@
+name: talksyncv2
+
+services:
+  backend:
+    build: ./FastAPI-Backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - files:/backend/FastAPI-Backend/files
+      - sqlitedb:/backend/FastAPI-Backend/test.db
+  
+  frontend:
+    build: ./SvelteKit-Frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - PUBLIC_API_ROOT="http://localhost:8000/api/v1"
+    depends_on:
+      - backend
+
+volumes:
+  files:
+  sqlitedb:

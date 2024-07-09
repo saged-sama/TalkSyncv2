@@ -21,7 +21,7 @@
   };
   let interval: any;
   onMount(() => {
-    interval = setInterval(getUsers, 10000);
+    interval = setInterval(getUsers, 100);
   });
   onDestroy(() => {
     clearInterval(interval);

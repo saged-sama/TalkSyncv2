@@ -91,7 +91,7 @@
         ? `${username}-${receiver}`
         : `${receiver}-${username}`;
 
-    interval = setInterval(getMessages, 10000);
+    interval = setInterval(getMessages, 100);
   });
   onDestroy(() => {
     clearInterval(interval);

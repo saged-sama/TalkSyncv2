@@ -1,5 +1,5 @@
 # TalkSync v2
-It's the upgrading of TalkSync using FastAPI in the backend instead of a pseudo FastAPI-like library
+It's the upgradation of TalkSync using FastAPI in the backend instead of a pseudo FastAPI-like library
 
 ## Techs
 - Backend - `FastAPI` + `SQLalchemy`

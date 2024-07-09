@@ -68,7 +68,6 @@
   const getUser = async (user: string) => {
     try {
       const response = await fetch(`${PUBLIC_API_ROOT}/users/${user}`);
-      console.log(`${PUBLIC_API_ROOT}/users/${user}`);
       if (!response.ok) {
         throw Error("Could not get user details");
       }

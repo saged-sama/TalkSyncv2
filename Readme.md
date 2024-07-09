@@ -47,4 +47,9 @@ Or build and run
 npm run build
 node build
 ```
+All security is turned off for now
 The adapter `@sveltejs/adapter-node` is used
+
+## Testing
+- Open two accounts from two different browsers, or incognito
+- Send Messages back and forth

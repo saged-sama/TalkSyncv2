@@ -57,6 +57,7 @@
         throw Error("Could not send message");
       }
       message = "";
+      file = null;
       const resp = await response.json();
       messages = [...resp];
     } catch (err) {
@@ -85,12 +86,13 @@
 
   let interval: any;
   onMount(async () => {
+    getSenderReceiverDetails();
     chatID =
       username < receiver
         ? `${username}-${receiver}`
         : `${receiver}-${username}`;
 
-    interval = setInterval(getMessages, 100);
+    interval = setInterval(getMessages, 10000);
   });
   onDestroy(() => {
     clearInterval(interval);
@@ -134,7 +136,7 @@
             <div class="chat-header text-xl font-bold text-secondary">
               {mssg.sender}
             </div>
-            <div class="py-2">{mssg.message}</div>
+            <div class="py-2">{mssg.message ? "" : mssg.message}</div>
             <div>
               {#if mssg.is_file}
                 {#if mssg.mime_type.split("/")[0] === "image"}
@@ -169,7 +171,7 @@
             <div class="chat-header text-xl font-bold text-orange-600">
               {mssg.sender}
             </div>
-            <div class="py-2">{mssg.message}</div>
+            <div class="py-2">{mssg.message ? "" : mssg.message}</div>
             <div>
               {#if mssg.is_file}
                 {#if mssg.mime_type.split("/")[0] === "image"}
@@ -220,7 +222,7 @@
       {/if}
       <label for="fileInput" style="cursor: pointer;">
         <Paperclip class="w-4 h-4 hover:text-primary" />
-        <input type="file" id="fileInput" class="hidden" bind:value={file} on:change={handleFileInput}/>
+        <input type="file" id="fileInput" class="hidden" on:change={handleFileInput}/>
       </label>
       <button on:click={addMessage} class="btn btn-ghost btn-sm"
         ><SendHorizonal class="h-4 w-4" /></button

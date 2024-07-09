@@ -21,9 +21,9 @@ def add_message(
 ):
     filename = ""
     if file:
-        filename = chatID + str(datetime.now()) + file.filename
-        filename = filename.replace(":", "-")
-        with open(f"files/filename", "wb") as buffer:
+        filename = chatID + str(datetime.now()) + file.filename.split(".")[-1]
+        filename = filename.replace(":", "-").replace(" ", "-")
+        with open(f"files/{filename}", "wb") as buffer:
             buffer.write(file.file.read())
 
     message = schemas.MessageCreate(chatID=chatID, message=message, sender=sender, isFile=isFile, mimeType=mimeType, filename=filename)

@@ -15,7 +15,6 @@
       }
       const resp = await response.json();
       users = [...resp];
-      console.log(users);
     } catch (err) {
       console.error("Could not get users");
     }

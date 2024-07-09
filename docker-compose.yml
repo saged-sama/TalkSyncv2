@@ -1,0 +1,14 @@
+name: talksyncv2
+
+services:
+  talksync-backend:
+    build: ./FastAPI-backend
+    ports:
+      - "8000:8000"
+  
+  talksync-frontend:
+    build: ./SvelteKit-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - talksync-backend

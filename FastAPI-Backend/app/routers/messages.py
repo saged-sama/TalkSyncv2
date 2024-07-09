@@ -34,5 +34,5 @@ def add_message(
 def get_messages(chatID: str, db: Session = Depends(deps.get_db)):
     messages = crud.get_messages(db=db, chatID=chatID)
     if not messages:
-        raise HTTPException(status_code=404, detail="Messages not found")
+        return []
     return messages

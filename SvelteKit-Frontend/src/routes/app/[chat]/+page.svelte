@@ -22,7 +22,7 @@
     }
     try {
       const response = await fetch(
-        `${PUBLIC_API_ROOT}/messages?chatID=${chatID}`,
+        `${PUBLIC_API_ROOT}/messages/?chatID=${chatID}`,
       );
       if (!response.ok) {
         throw Error("Could not get messages");

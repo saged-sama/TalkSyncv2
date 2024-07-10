@@ -42,7 +42,6 @@ npm run dev
 npm run dev -- --host
 ```
 All security is turned off for now
-The adapter `@sveltejs/adapter-node` is used
 
 ## Testing
 - Open two accounts from two different browsers, or incognito

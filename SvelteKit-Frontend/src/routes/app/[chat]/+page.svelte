@@ -10,11 +10,18 @@
   let file: File | null = null;
   let messages: any[] = [];
   let chatID: string;
+  let fileInput: HTMLInputElement;
   let senderDetails: any, receiverDetails: any;
 
   const handleFileInput = (event: any) => {
     file = event.target.files[0];
+    console.log(file)
   };
+
+  const clearFile = () => {
+    file = null;
+    fileInput.value = "";
+  }
 
   const getMessages = async () => {
     if (!username || !receiver) {
@@ -57,7 +64,7 @@
         throw Error("Could not send message");
       }
       message = "";
-      file = null;
+      clearFile();
       const resp = await response.json();
       messages = [...resp];
     } catch (err) {
@@ -135,7 +142,9 @@
             <div class="chat-header text-xl font-bold text-secondary">
               {mssg.sender}
             </div>
-            <div class="py-2">{mssg.message ? "" : mssg.message}</div>
+            {#if mssg.message !== "undefined"}
+              <div class="px-2">{mssg.message}</div>
+            {/if}
             <div>
               {#if mssg.is_file}
                 {#if mssg.mime_type.split("/")[0] === "image"}
@@ -170,7 +179,9 @@
             <div class="chat-header text-xl font-bold text-orange-600">
               {mssg.sender}
             </div>
-            <div class="py-2">{mssg.message ? "" : mssg.message}</div>
+            {#if mssg.message !== "undefined"}
+              <div class="px-2">{mssg.message}</div>
+            {/if}
             <div>
               {#if mssg.is_file}
                 {#if mssg.mime_type.split("/")[0] === "image"}
@@ -216,12 +227,12 @@
             value={file.name}
             class="input input-sm input-bordered input-primary"
           />
-          <button on:click={() => (file = null)}><X class="w-4 h-4" /></button>
+          <button on:click={clearFile}><X class="w-4 h-4" /></button>
         </label>
       {/if}
       <label for="fileInput" style="cursor: pointer;">
         <Paperclip class="w-4 h-4 hover:text-primary" />
-        <input type="file" id="fileInput" class="hidden" on:change={handleFileInput}/>
+        <input type="file" id="fileInput" class="hidden" bind:this={fileInput} on:change={handleFileInput}/>
       </label>
       <button on:click={addMessage} class="btn btn-ghost btn-sm"
         ><SendHorizonal class="h-4 w-4" /></button

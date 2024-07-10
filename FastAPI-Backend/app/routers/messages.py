@@ -19,6 +19,10 @@ def add_message(
     file: Optional[UploadFile] = File(None),
     db: Session = Depends(deps.get_db)
 ):
+    if(message == None and file == None):    
+        raise HTTPException(status_code=400, detail="Message or file is required")
+    if(message == None):
+        message = ""
     filename = ""
     if file:
         filename = chatID + str(datetime.now()) + file.filename.split(".")[-1]
@@ -26,8 +30,8 @@ def add_message(
         with open(f"files/{filename}", "wb") as buffer:
             buffer.write(file.file.read())
 
-    message = schemas.MessageCreate(chatID=chatID, message=message, sender=sender, isFile=isFile, mimeType=mimeType, filename=filename)
-    crud.create_message(db=db, message=message)
+    created_message = schemas.MessageCreate(chatID=chatID, message=message, sender=sender, isFile=isFile, mimeType=mimeType, filename=filename)
+    crud.create_message(db=db, message=created_message)
     return crud.get_messages(db=db, chatID=chatID)
 
 @router.get("/")
@@ -35,4 +39,5 @@ def get_messages(chatID: str, db: Session = Depends(deps.get_db)):
     messages = crud.get_messages(db=db, chatID=chatID)
     if not messages:
         return []
+    # print(messages)
     return messages

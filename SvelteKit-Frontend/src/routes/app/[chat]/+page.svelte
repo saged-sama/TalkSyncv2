@@ -111,7 +111,7 @@
   <div class="px-2">
     <h1 class="flex items-center text-2xl gap-2">
       <img
-        src={`${PUBLIC_API_ROOT}/images/${receiverDetails.image}`}
+        src={`${PUBLIC_API_ROOT}/files/${receiverDetails.image}`}
         alt="ProPic"
         class="max-w-12 max-h-12"
       />
@@ -134,7 +134,7 @@
             <div class="w-10 rounded-full">
               <img
                 alt="Tailwind CSS chat bubble component"
-                src={`${PUBLIC_API_ROOT}/images/${senderDetails.image}`}
+                src={`${PUBLIC_API_ROOT}/files/${senderDetails.image}`}
               />
             </div>
           </div>
@@ -149,14 +149,14 @@
               {#if mssg.is_file}
                 {#if mssg.mime_type.split("/")[0] === "image"}
                   <img
-                    src={`${PUBLIC_API_ROOT}/images/${mssg.filename}`}
+                    src={`${PUBLIC_API_ROOT}/files/${mssg.filename}`}
                     class="max-w-80 rounded-lg"
                     alt="Attachment"
                   />
                 {:else}
                   <a
                     class="btn btn-neutral"
-                    href={`${PUBLIC_API_ROOT}/get-file?path=${mssg.filename}`}
+                    href={`${PUBLIC_API_ROOT}/files/${mssg.filename}`}
                     >{mssg.filename}</a
                   >
                 {/if}
@@ -171,7 +171,7 @@
             <div class="w-10 rounded-full">
               <img
                 alt="Tailwind CSS chat bubble component"
-                src={`${PUBLIC_API_ROOT}/images/${receiverDetails.image}`}
+                src={`${PUBLIC_API_ROOT}/files/${receiverDetails.image}`}
               />
             </div>
           </div>
@@ -186,14 +186,14 @@
               {#if mssg.is_file}
                 {#if mssg.mime_type.split("/")[0] === "image"}
                   <img
-                    src={`${PUBLIC_API_ROOT}/images/${mssg.filename}`}
+                    src={`${PUBLIC_API_ROOT}/files/${mssg.filename}`}
                     class="max-w-80 rounded-lg"
                     alt="Attachment"
                   />
                 {:else}
                   <a
                     class="btn btn-neutral"
-                    href={`${PUBLIC_API_ROOT}/images/${mssg.filename}`}
+                    href={`${PUBLIC_API_ROOT}/files/${mssg.filename}`}
                     >{mssg.filename}</a
                   >
                 {/if}

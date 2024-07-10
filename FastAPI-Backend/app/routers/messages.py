@@ -25,7 +25,7 @@ def add_message(
         message = ""
     filename = ""
     if file:
-        filename = chatID + str(datetime.now()) + file.filename.split(".")[-1]
+        filename = chatID + str(datetime.now()) + "." + file.filename.split(".")[-1]
         filename = filename.replace(":", "-").replace(" ", "-")
         with open(f"files/{filename}", "wb") as buffer:
             buffer.write(file.file.read())

@@ -1,0 +1,10 @@
+env
+*.jpg
+*.jpeg
+*.png
+*.gif
+*pycache*
+*.db
+
+.dockerignore
+Dockerfile
